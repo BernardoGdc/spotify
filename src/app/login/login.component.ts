@@ -11,7 +11,7 @@ export class LoginComponent {
 
   loginURL: string = `https://accounts.spotify.com/authorize?client_id=${environment.client_id}&redirect_uri=${environment.redirect_url}&response_type=code`
 
-  constructor(private http: HttpClient) {
+  constructor() {
 
   }
 }
