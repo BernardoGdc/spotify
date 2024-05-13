@@ -8,7 +8,8 @@ import { environment } from '../../environments/environment';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  loginURL = `https://accounts.spotify.com/authorize?client_id=${environment.client_id}&redirect_uri=${environment.redirect_url}&response_type=code`
+
+  loginURL: string = `https://accounts.spotify.com/authorize?client_id=${environment.client_id}&redirect_uri=${environment.redirect_url}&response_type=code`
 
   constructor(private http: HttpClient) {
 
