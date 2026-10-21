@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "Spotify Queue Shuffler",
+    "slug": "spotify-queue-shuffler",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "spotifyqueue",
+    "userInterfaceStyle": "automatic",
+    "plugins": [
+      "expo-router"
+    ],
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

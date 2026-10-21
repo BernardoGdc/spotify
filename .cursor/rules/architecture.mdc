@@ -1,0 +1,40 @@
+---
+description: Architecture for the client-only cross-platform Spotify queue shuffler
+alwaysApply: true
+---
+
+# Architecture
+
+## System shape
+
+- Build one universal Expo/React Native TypeScript application for web, iOS, and Android.
+- Use Expo Router for navigation and platform-aware routes.
+- Keep the application client-only: no backend, database, or server-owned Spotify account.
+- Every user authenticates their own Spotify account using Authorization Code with PKCE.
+- Never include or request a Spotify client secret in client code.
+
+## Module boundaries
+
+- `app/`: route definitions and composition only; no Spotify API or domain logic.
+- `src/features/`: user workflows such as authentication, library selection, and queue creation.
+- `src/domain/`: pure types and deterministic queue/shuffle rules with no framework dependencies.
+- `src/integrations/spotify/`: OAuth, Web API client, DTO mapping, rate-limit handling, and Spotify-specific errors.
+- `src/platform/`: secure storage, deep links, and other web/native differences.
+- `src/components/`: reusable presentational UI without Spotify API calls.
+- Dependencies flow from routes to features, then to domain and integration interfaces. Domain code imports neither Expo nor Spotify code.
+
+## Authentication and security
+
+- Use PKCE and validate OAuth `state`; use the system browser rather than embedded credentials.
+- Keep access tokens in memory.
+- Store refresh tokens with secure platform storage on iOS and Android.
+- On web, default to session-only storage and require sign-in after the browser session ends.
+- Never log tokens, authorization codes, or sensitive Spotify responses.
+
+## Queue behavior
+
+- Treat Spotify as the source of truth for library, playback device, and queue state.
+- Convert Spotify responses into domain models at the integration boundary.
+- Build the shuffled order locally, then enqueue tracks sequentially on the user's active device.
+- Handle `401`, `403`, and `429` explicitly; honor Spotify's `Retry-After` value.
+- The app controls an existing Spotify playback session and never streams audio itself.

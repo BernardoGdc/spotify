@@ -5,9 +5,31 @@
 
 # Dependencies and generated output
 node_modules/
+.expo/
 dist/
 build/
+web-build/
 coverage/
+*.tsbuildinfo
+
+# Generated native projects
+/android/
+/ios/
+
+# Native credentials and build files
+.kotlin/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.pem
+
+# Tooling logs
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+.metro-health-check*
 
 # Editors and operating systems
 .vscode/
