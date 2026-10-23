@@ -4,14 +4,19 @@
     "slug": "spotify-queue-shuffler",
     "version": "0.1.0",
     "orientation": "portrait",
-    "scheme": "spotifyqueue",
+    "scheme": [
+      "spotifyqueue",
+      "spotify-queue-login"
+    ],
     "userInterfaceStyle": "automatic",
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-secure-store",
+      "expo-web-browser"
     ],
     "web": {
       "bundler": "metro",
-      "output": "static"
+      "output": "single"
     },
     "experiments": {
       "typedRoutes": true

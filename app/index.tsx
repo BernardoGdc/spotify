@@ -1,5 +1,5 @@
-import { WelcomeScreen } from '../src/features/welcome/WelcomeScreen';
+import { PlaybackScreen } from '../src/features/playback/PlaybackScreen';
 
 export default function IndexRoute() {
-  return <WelcomeScreen />;
+  return <PlaybackScreen />;
 }
